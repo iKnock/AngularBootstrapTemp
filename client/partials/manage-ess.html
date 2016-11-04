@@ -1,0 +1,249 @@
+<div class = "container-fluid">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="row-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header col-md-4">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand header-link" style="color: #FF6600" ng-click="go('/home')">Addis Essentials</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <div class="col-md-8">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a style="color: #FF6600" class="header-link" ng-click="go('/home')">Home</a></li>
+                            <li><a style="color: #FF6600" class="header-link" ng-click="go('/exploreEss')">Explore</a></li>
+                            <li><a style="color: #FF6600" class="header-link" ng-click="go('/essMap')">Discover Essentials</a></li>
+                            <li ng-show="showCommentBox" class="dropdown">
+                                <div style="margin-top: 15px;"><i class="fa fa-user lg"></i><a style="color: darkred; font-weight: bold;" href="#" class="dropdown-toggle" data-toggle="dropdown">{{screenName}} <b class="caret"></b></a></div>
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="logout()">Log Out</a></li>
+                                </ul>
+                            </li>
+                            <li ng-show="showLogInNotifier"><a class="btn header-link" style="color: #FF6600; border: 2px #000000 transparent; border-radius: 12px;" ng-click="go('/login')">Log In</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+</div>
+<!--<div class="search-bar">
+    <input ng-model="query" type="search" placeholder="search" class="topcoat-search-input search-key">
+</div>-->
+<div class="row-fluid" style="margin-top: 50px;">
+
+    <div style="margin-top: 48px;"></div>
+
+    <!--Left Adds-->
+    <div class = "col-md-1" style="border: 1px transparent solid; border-radius: 12px;"></div>
+
+    <div class = "col-md-10" style="border: 1px transparent solid; border-radius: 1px; background-color: rgba(0,0,0,0.03)">
+
+        <div class="well">
+            <string><p class="text-center">Register Essentials</p></string>
+        </div>
+
+        <div class="row-fluid">
+            <!--<div class="row-fluid">
+                <p class="text-center" style="background-color: #eed3d7">Move the Marker to Easily Locate an Essential on the Map</p>
+                <leaflet defaults="defaults" center="center" markers="markers" event-broadcast="events" height="280px" width="100%"></leaflet>
+            </div>-->
+            <div class="col-md-3" style="margin-top: 20px; border: 2px transparent solid; border-radius: 12px;">
+                <!--Image Container-->
+                <div class="row-fluid" style="margin-bottom: 5px; margin-top: 5px; border: 1px #000000 dashed; border-radius: 12px;">
+                    <img ng-src="pics/{{imageUrl}}" style="height: 200px; width: 250px;">
+                    <input type="file" ng-file-select="onFileSelect($files)" name="logo" id="logo">
+                </div>
+
+                <!--<div class="row-fluid" style="margin-top: 20px; border: 2px brown solid; border-radius: 12px; overflow: auto">
+                    <p class="text-center" style="background-color: #eed3d7">User's Essentials</p>
+                    <ul class="list-group">
+                        <li class="list-group-item-success list-group-item-text" ng-repeat="userEss in userEssentials" style="border: 1px #000000 dotted;">
+                            <div class="row-fluid">
+                                <div class="col-md-7">
+                                    <a>
+                                        <p>{{userEss.ess_name}}</p>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <button ng-click="deleteEvent(userEss.ess_id)" class="btn btn-danger">Remove</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>-->
+            </div>
+
+            <div class="col-md-8" style="margin: 20px; border: 1px #000000 dashed; border-radius: 12px;">
+                <div class="row-fluid">
+                    <p class="text-center" style="background-color: #eed3d7">Move the Marker to Easily Locate an Essential on the Map</p>
+                    <leaflet defaults="defaults" center="center" markers="markers" event-broadcast="events" height="280px" width="100%"></leaflet>
+                </div>
+                <div class="row-fluid" style="margin: 10px; border: 1px transparent solid; border-radius: 12px;">
+                    <form method='post' enctype='multipart/form-data'>
+                    <div class="col-md-6">
+                        <div class="row-fluid" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label>Essentials Category</label>
+                            </div>
+                            <div class="col-md-1">
+                                <select  ng-model="ess.ess_category" ng-options="essCateg.catagory_name for essCateg in essCategory">
+                                    <option value="">----Category Type----</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input  ng-model="ess.ess_name" type="text">
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label>City</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input  ng-model="ess.city" type="text">
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label>Street</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input  ng-model="ess.local_name" type="text">
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label>Website</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input  ng-model="ess.website" type="text">
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label>Facebook</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input  ng-model="ess.facebook" type="text">
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label>Twitter</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input  ng-model="ess.twitter" type="text">
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label>Google Plus</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input  ng-model="ess.google_plus" type="text">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-6">
+                            <div class="row-fluid" style="margin-bottom: 5px;">
+                                <div class="col-md-3">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input  ng-model="ess.email" type="text">
+                                </div>
+                            </div>
+                            <div class="row-fluid" style="margin-bottom: 5px;">
+                                <div class="col-md-3">
+                                    <label>Pobox</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input  ng-model="ess.pobox" type="text">
+                                </div>
+                            </div>
+                            <div class="row-fluid" style="margin-bottom: 5px;">
+                                <div class="col-md-3">
+                                    <label>Phone</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input  ng-model="ess.phone_num" type="text">
+                                </div>
+                            </div>
+                            <div class="row-fluid" style="margin-bottom: 5px;">
+                                <div class="col-md-3">
+                                    <label>Latitude</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input  ng-model="ess.lat" type="text">
+                                </div>
+                            </div>
+                            <div class="row-fluid" style="margin-bottom: 5px;">
+                                <div class="col-md-3">
+                                    <label>Longitude</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input  ng-model="ess.lng" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="well well-sm">
+                    <div class="text-center">
+                        <button ng-click="saveEssentialsInfo()" style="margin-bottom: 10px;" type="submit" class="btn btn-primary">Save</button>
+                        <button style="margin-bottom: 10px;" type="submit" class="btn btn-info">Update Status</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Right Adds-->
+    <div class = "col-md-1" style="border: 1px transparent solid; border-radius: 12px;"></div>
+</div>
+
+
+<div class="row-fluid">
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <!--<p class="simplenav">
+                            <a href="#">Home</a> |
+                            <a href="about.html">About</a> |
+                            <a href="sidebar-right.html">Sidebar</a> |
+                            <a href="contact.html">Contact</a> |
+                            <b><a href="signup.html">Sign up</a></b>
+                        </p>-->
+                    </div>
+                </div>
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="text-right">
+                            Copyright &copy; 2014, iKnock Solution.
+                        </p>
+                    </div>
+                </div>
+
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+</div>

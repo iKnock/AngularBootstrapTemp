@@ -1,0 +1,78 @@
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <!-- build:css css/addisEssentials.min.css -->
+    <link href="css/font-style.css" rel="stylesheet" />
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="lib/font-awesome.min.css">-->
+    <link href="lib/bootstrap-theme.css" rel="stylesheet">
+    <link href="vendors/leaflet-0.7.3/leaflet.css" rel="stylesheet">
+    <link href="vendors/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="vendors/topcoat/css/topcoat-mobile-light.min.css" rel="stylesheet">
+    <link href="vendors/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--<link href="vendors/Map-Icons-master/css/map-icons.css" rel="stylesheet">-->
+
+    <link href="css/grid-listview.css" rel="stylesheet">
+    <link href="css/grid-cust-style.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <link href="vendors/Leaflet-awsome-marker/leaflet.awesome-markers.css" rel="stylesheet">
+
+    <link href="vendors/angular-toster/toaster.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:js js/addisEssentials.min.js -->
+    <script src="vendors/jquery/jquery.js"></script>
+    <script src="vendors/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <!--<script src="vendors/Map-Icons-master/js/map-icons.js"></script>-->
+
+    <script src="vendors/leaflet-0.7.3/leaflet.js"></script>
+    <script src="lib/angular-file-upload-shim.min.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-file-upload.min.js"></script>
+    <script src="lib/angular-leaflet-directive.min.js"></script>
+
+    <script src="lib/jquery-ui.min.js"></script>
+
+    <script src="lib/sortable.js"></script>
+
+    <script src="lib/PhoneGap.js"></script>
+    <!--<script src="lib/angularjs-geolocation.min.js"></script>-->
+
+    <script src="lib/lodash.compat.js"></script>
+
+    <script src="vendors/Leaflet-awsome-marker/leaflet.awesome-markers.min.js"></script>
+    <!--<script src="lib/angular-google-maps.js"></script>-->
+
+    <!--<script src="lib/angularjs-geolocation.min.js"></script>-->
+
+    <!--<script src="lib/angular-google-staticmaps.min.js"></script>-->
+
+    <script src="lib/angular-facebook.js"></script>
+
+    <script src="lib/angular-touch.js"></script>
+    <script src="lib/angular-resource.js"></script>
+    <script src="lib/angular-animate.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="vendors/angular-toster/toaster.js"></script>
+    <script src="lib/ui-bootstrap-0.11.0.js"></script>
+    <script src="lib/ui-bootstrap-tpls-0.11.0.js"></script>
+
+    <!--<script src="js/addis-essentials-api.templates.js"></script>-->
+    <script src="js/app.js"></script>
+    <!--<script src="js/geolocation-service.js"></script>-->
+    <script src="js/controllers.js"></script>
+    <script src="js/rest-services.js"></script>
+    <!-- endbuild -->
+</head>
+
+<body ng-controller="MainCtrl">
+<toaster-container toaster-options="{'position-class': 'toast-top-full-width'}"></toaster-container>
+<div ng-view ng-class="container-fluid">
+</div>
+
+</body>
+</html>

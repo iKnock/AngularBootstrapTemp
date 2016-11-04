@@ -1,0 +1,171 @@
+<div class = "container-fluid">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="row-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header col-md-4">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand header-link" style="color: #FF6600" ng-click="go('/home')">Temp</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <div class="col-md-8">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a style="color: #FF6600" class="header-link" ng-click="go('/home')">Home</a></li>
+                            <li><a style="color: #FF6600" class="header-link" ng-click="go('/exploreEss')">Explore</a></li>
+                            <li><a style="color: #FF6600" class="header-link" ng-click="go('/essMap')">Discover Essentials</a></li>
+                            <li ng-show="showCommentBox" class="dropdown">
+                                <div style="margin-top: 15px;"><i class="fa fa-user lg"></i><a style="color: darkred; font-weight: bold;" href="#" class="dropdown-toggle" data-toggle="dropdown">{{screenName}} <b class="caret"></b></a></div>
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="logout()">Log Out</a></li>
+                                </ul>
+                            </li>
+                            <li ng-show="showLogInNotifier"><a class="btn header-link" style="color: #FF6600; border: 2px #000000 transparent; border-radius: 12px;" ng-click="go('/login')">Log In</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+</div>
+
+
+<div class= "row-fluid">
+
+    <div class="list-desk-spacer hidden-phone"></div>
+    <div class="list-mob-spacer hidden-desktop"></div>
+
+    <!--Left Adds-->
+    <!--<div class = "col-md-1" style="border: 1px transparent solid; border-radius: 12px;"></div>-->
+
+    <!--Main Container(center)-->
+    <div style="border: 1px transparent solid; border-radius: 1px; background-color: rgba(0,0,0,0.6)">
+        <div class="row-fluid">
+
+            <div id="head" style="border: 1px transparent solid; border-radius: 1px;">
+
+            </div>
+
+            <div class="row-fluid" style="border: 1px transparent solid; border-radius: 1px; min-height: 250px; background-color: #f5f5f5;">
+                <div style="margin-top: 45px; margin-bottom: 45px;">
+                <h3 class="text-center thin" style="margin-top: 7px;">Connect easily!!!<strong> We do not post anything to Facebook without your explicit permission.</strong></h3>
+                <button class="log-in-with-fb-sm center-block" style="margin-top: 5px; min-width: 300px;" ng-click="go('/login')"></button>
+                <h3 style="margin-top: 5px; margin-bottom: 5px;" class="text-center">-Or-</h3>
+                <button class="btn center-block btn-primary" style="margin-top: 2px;" class="btn btn-link center-block" ng-click="go('/signup')">Sign Up with email</button>
+                </div>
+            </div>
+
+            <div style="background-color: #990099; height: 2px;">
+            </div>
+            <!--TopEssentials container-->
+            <div class="jumbotron" style="background-color: #000000">
+
+                <div>
+                    <h3 class="text-center thin" style="color: darkgrey; margin-top: -10px; margin-bottom: 10px; font-weight: bold;">Discover Top Essentials of the City</h3>
+                    <p class="text-center text-muted" style="margin-top: -10px; margin-bottom: 20px;">Find the best Bar, Hotel, Restaurant or Cafe around you. To Reach more be a member of our increasingly growing Essentials Database.</p>
+                </div>
+
+                <div class="my-page ui-content" style="border: 1px transparent solid; border-radius: 12px;">
+                    <ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+                        <li class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-thumb ui-first-child
+                ui-btn-up-a" ng-repeat="aEss in topEsses">
+                            <div class="ui-btn-inner ui-li">
+                                <div class="ui-btn-text">
+                                    <a ng-click="populateBranchInfoDetail(aEss.branch_id,aEss.ess_id)" class="ui-link-inherit">
+                                        <p class="ui-li-aside ui-li-desc">{{aEss.rate_index}}</p>
+                                        <img ng-src="pics/{{aEss.ess_logo}}" class="ui-li-thumb" style="height: 100%;">
+                                        <h2 class="ui-li-heading">{{aEss.ess_name}}</h2>
+                                        <p class="ui-li-desc">{{aEss.moto}}</p>
+                                    </a>
+                                    <rating class="ui-li-desc" ng-change="essListRateEventListner(aEss.user_rate, aEss.savedRate, aEss.ess_id, aEss.intraction_id, aEss.category_id)" ng-model="aEss.user_rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                                </div>
+                                <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <button style="margin-top: 20px;" type="submit" class="btn btn-info btn-lg center-block" ng-click="go('/essMap')">See More Essentials</button>
+                </div>
+            </div>
+
+            <div style="background-color: #990099; height: 1px;">
+            </div>
+
+        </div>
+    </div>
+
+    <!--Right Adds-->
+    <!--<div class = "col-md-1" style="border: 1px transparent solid; border-radius: 12px;"></div>-->
+</div>
+
+<div class="row-fluid">
+    <div class="footer1">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-5 widget">
+                    <h3 class="widget-title">What is this Temp?</h3>
+                    <div class="widget-body">
+                        <p>Addis Essentials is a multiplatform (phone, tablet, desktop) application which provides it user with Geo-location based information while giving the capability of Rating, commenting and creating custom essentials list for its users.</p>
+                        <p>Addis Essentials also provide users to easily check in to an essential and share it across social media. On the other hand other users can know how many users were checked in by gender. This might help users to easily identify the most popular or the hottest place in the city. It is also a platform to promote businesses effectively and efficiently.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 widget">
+                    <h3 class="widget-title">Follow Us On Social Media</h3>
+                    <div class="widget-body">
+                        <p class="follow-me-icons">
+                            <a href=""><i class="fa fa-facebook fa-2"></i></a>
+                            <a href=""><i class="fa fa-twitter fa-2"></i></a>
+                            <a href=""><i class="fa fa-google-plus fa-2"></i></a>
+                            <a href=""><i class="fa fa-github fa-2"></i></a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 widget">
+                    <h3 class="widget-title">Contact</h3>
+                    <div class="widget-body">
+                        <p>+251 911 117962<br>
+                            <a href="mailto:#">iknocksolution@gmail.com</a><br>
+                            <br>
+                            Liberia Street, Addis Ababa, ET
+                        </p>
+                    </div>
+                </div>
+
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                    </div>
+                </div>
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="text-right">
+                            Copyright &copy; 2014, iKnock Solution.
+                        </p>
+                    </div>
+                </div>
+
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+</div>
